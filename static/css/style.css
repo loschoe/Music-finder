@@ -11,6 +11,7 @@
   --bg-secondary: #1c2541;
   --bg-card: #0e235e;
   --bg-menu: #02050f;
+  --bg-neon: #0364cf;
   --blue-accent: #5bc0eb;
   --blue-soft: #3a86ff;
   --text-main: #eaeaea;
@@ -68,6 +69,7 @@ body {
 }
 
 .big-title {
+  flex: 1;
   text-align: center;
   font-size: 2.8rem;
   letter-spacing: 2px;
@@ -75,12 +77,14 @@ body {
   text-shadow: 0 0 18px rgba(91, 192, 235, 0.45);
 }
 
+
 .logo {
-  width: 70px;
-  height: 70px;
+  flex-shrink: 0;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid var(--blue-accent);
+  border: 3px solid var(--bg-neon);
   box-shadow: 0 0 18px rgba(91, 192, 235, 0.45);
 }
 
@@ -108,7 +112,7 @@ body {
 .side-menu a {
   color: var(--text-muted);
   text-decoration: none;
-  font-size: 1.4rem;
+  font-size: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -264,7 +268,7 @@ footer {
 
 }
 
-footer a {
+footer a, p{
   color: var(--blue-accent);
   text-decoration: none;
 }

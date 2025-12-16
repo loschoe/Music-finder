@@ -39,6 +39,11 @@ func handleHome(w http.ResponseWriter, r *http.Request) {
 	tmpl.Execute(w, nil)
 }
 
+func handleAbout(w http.ResponseWriter, r *http.Request) {
+	tmpl := template.Must(template.ParseFiles(filepath.Join("templates", "AboutUS.html")))
+	tmpl.Execute(w, nil)
+}
+
 func artistsHandler(w http.ResponseWriter, r *http.Request) {
 	artists, err := getArtists()
 	if err != nil {
@@ -59,7 +64,8 @@ func main() {
 	http.Handle("/static/", http.StripPrefix("/static/", fs))
 
 	// Routes principales
-	http.HandleFunc("/", artistsHandler)
+	http.HandleFunc("/", handleHome)
+	http.HandleFunc("/about", handleAbout)
 	
 	log.Println("✅ Serveur démarré sur http://localhost:8080")
 	log.Fatal(http.ListenAndServe(":8080", nil))

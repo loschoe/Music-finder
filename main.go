@@ -35,8 +35,17 @@ func getArtists() ([]Artist, error) {
 
 // =================== Handlers ===================
 func handleHome(w http.ResponseWriter, r *http.Request) {
+	artists, err := getArtists()
+	if err != nil {
+		log.Println("Erreur getArtists:", err)
+		http.Error(w, "Erreur serveur", http.StatusInternalServerError)
+		return
+	}
+
 	tmpl := template.Must(template.ParseFiles(filepath.Join("templates", "home.html")))
-	tmpl.Execute(w, nil)
+	if err := tmpl.Execute(w, artists); err != nil {
+		log.Println("Erreur template home.html :", err)
+	}
 }
 
 func handleAbout(w http.ResponseWriter, r *http.Request) {
@@ -44,20 +53,6 @@ func handleAbout(w http.ResponseWriter, r *http.Request) {
 	tmpl.Execute(w, nil)
 }
 
-func artistsHandler(w http.ResponseWriter, r *http.Request) {
-	artists, err := getArtists()
-	if err != nil {
-		http.Error(w, "Erreur serveur", http.StatusInternalServerError)
-		return
-	}
-	tmpl, err := template.ParseFiles("templates/artists.html")
-	if err != nil {
-		http.Error(w, "Erreur template", http.StatusInternalServerError)
-		return
-	}
-	w.Header().Set("Content-Type", "text/html; charset=utf-8")
-	tmpl.Execute(w, artists)
-}
 
 func main() {
 	fs := http.FileServer(http.Dir("static"))

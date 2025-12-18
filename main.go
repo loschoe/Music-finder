@@ -6,6 +6,7 @@ import (
 	"path/filepath"
 	"encoding/json"
 	"strings"
+	"strconv"
 )
 
 // =========== Fonctions & Variables =============
@@ -20,6 +21,10 @@ type Artist struct {
 
 func (a Artist) NbMembers() int {
     return len(a.Members)
+}
+
+func (a Artist) MembersList() string {
+    return strings.Join(a.Members, ", ")
 }
 
 type PageData struct {
@@ -66,19 +71,17 @@ func handleHome(w http.ResponseWriter, r *http.Request) {
 	}
 
 	data := PageData{
-		Artists: allArtists, // par défaut : tous les artistes
+		Artists: allArtists,
 	}
 
 	if r.Method == http.MethodPost {
 		query := strings.TrimSpace(r.FormValue("group"))
 
 		if query != "" {
-			// Champ rempli → filtre
 			data.Query = query
 			data.Searched = true
 			data.Artists = filterArtists(allArtists, query)
 		} else {
-			// Champ vide → retourner à tous les artistes
 			data.Query = ""
 			data.Searched = false
 			data.Artists = allArtists
@@ -91,15 +94,45 @@ func handleHome(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func handleArtist(w http.ResponseWriter, r *http.Request) {
-	tmpl := template.Must(template.ParseFiles(filepath.Join("templates", "artist.html")))
-	tmpl.Execute(w, nil)
-}
-
 func handleAbout(w http.ResponseWriter, r *http.Request) {
 	tmpl := template.Must(template.ParseFiles(filepath.Join("templates", "AboutUS.html")))
 	tmpl.Execute(w, nil)
 }
+
+func handleArtist(w http.ResponseWriter, r *http.Request) {
+    // Extraire l'ID de l'URL grâce au bouton 
+    idStr := strings.TrimPrefix(r.URL.Path, "/artist/")
+    id, err := strconv.Atoi(idStr)
+    if err != nil {
+        http.NotFound(w, r)
+        return
+    }
+
+    // Récupérer tous les artistes
+    artists, err := getArtists()
+    if err != nil {
+        http.Error(w, "Erreur serveur", http.StatusInternalServerError)
+        return
+    }
+
+    // Chercher l'artiste correspondant
+    var artist *Artist
+    for i := range artists {
+        if artists[i].ID == id {
+            artist = &artists[i]
+            break
+        }
+    }
+
+    if artist == nil {
+        http.NotFound(w, r)
+        return
+    }
+
+    tmpl := template.Must(template.ParseFiles(filepath.Join("templates", "artist.html")))
+    tmpl.Execute(w, artist)
+}
+
 
 // =================== Fonction main ===================
 func main() {
@@ -109,7 +142,7 @@ func main() {
 	// Les pages !
 	http.HandleFunc("/", handleHome)
 	http.HandleFunc("/about", handleAbout)
-	http.HandleFunc("/artist", handleArtist)
+	http.HandleFunc("/artist/", handleArtist)
 	
 	// Démarrage du serveur :
 	log.Println("✅ Serveur démarré sur http://localhost:8080")

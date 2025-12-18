@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/css/style_artist.css">
-    <link rel="stylesheet" href="/static/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>Artiste</title>
 </head>
@@ -30,9 +29,17 @@
         </div>
 
         <div class="div3">
+            <h2 class="title"><i class="fas fa-magnifying-glass"></i> Artiste recherché</h2>
             
-            <!-- [ TU CODE ICI ]-->
-
+            <img class="illustration" src="{{ .Image }}" alt="Image de {{ .Name }}">
+            <h3 class="Name">{{ .Name }}</h3>
+            
+            <p class="text-descript"><span class="label">Création : </span>{{ .CreationDate }}</p>
+            <p class="text-descript"><span class="label">Le ou les membre(s) :</span> {{ .MembersList }}</p><br>
+            <p class="text-descript"><span class="label">Premier album sorti le</span> {{ .FirstAlbum }}</p>
+            <p class="text-todo">Localisation : [A faire]</p> <!-- TODO-->
+            
+            <a class="Retour" href="/">← Retour à l'accueil</a>
         </div>
 
         <div class="div4">

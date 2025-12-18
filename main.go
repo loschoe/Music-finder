@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"path/filepath"
 	"encoding/json"
+	"strings"
 )
 
 // =========== Fonctions & Variables =============
@@ -15,6 +16,12 @@ type Artist struct {
 	CreationDate 	int 		`json:"creationDate"`
 	FirstAlbum 		string  	`json:"firstAlbum"`
 	Image        	string   	`json:"image"`
+}
+
+type PageData struct {
+	Query 			string
+	Searched 		bool
+	Artists 		[]Artist
 }
 
 func getArtists() ([]Artist, error) {
@@ -32,21 +39,55 @@ func getArtists() ([]Artist, error) {
 	return artists, nil
 }
 
+func filterArtists(artists []Artist, query string) []Artist {
+	query = strings.ToLower(query)
+	var results []Artist
+
+	for _, artist := range artists {
+		if strings.Contains(strings.ToLower(artist.Name), query) {
+			results = append(results, artist)
+		}
+	}
+
+	return results
+}
 
 // =================== Handlers ===================
 func handleHome(w http.ResponseWriter, r *http.Request) {
-	artists, err := getArtists()
+	allArtists, err := getArtists()
 	if err != nil {
 		log.Println("Erreur getArtists:", err)
 		http.Error(w, "Erreur serveur", http.StatusInternalServerError)
 		return
 	}
 
+	data := PageData{
+		Artists: allArtists, // par défaut : tous les artistes
+	}
+
+	if r.Method == http.MethodPost {
+		query := strings.TrimSpace(r.FormValue("group"))
+
+		if query != "" {
+			// Champ rempli → filtre
+			data.Query = query
+			data.Searched = true
+			data.Artists = filterArtists(allArtists, query)
+		} else {
+			// Champ vide → retourner à tous les artistes
+			data.Query = ""
+			data.Searched = false
+			data.Artists = allArtists
+		}
+	}
+
 	tmpl := template.Must(template.ParseFiles(filepath.Join("templates", "home.html")))
-	if err := tmpl.Execute(w, artists); err != nil {
+	if err := tmpl.Execute(w, data); err != nil {
 		log.Println("Erreur template home.html :", err)
 	}
 }
+
+
 
 func handleAbout(w http.ResponseWriter, r *http.Request) {
 	tmpl := template.Must(template.ParseFiles(filepath.Join("templates", "AboutUS.html")))

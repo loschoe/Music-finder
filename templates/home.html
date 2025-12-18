@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <script src="/static/js/script.js"></script>
     <title>Accueil</title>
 </head>
 <body>
@@ -39,14 +38,22 @@
                         </svg>
                     </div>
 
-                    <input type="text" placeholder="Votre groupe..." class="search-input">
-                    <button class="search-btn">Rechercher</button>
-
+                    <form action="/" method="POST">
+                        <input
+                            class="search-input"
+                            type="text"
+                            name="group"
+                            placeholder="Votre groupe..."
+                            value="{{.Query}}"
+                            
+                        >
+                        <button class="search-btn" type="submit">Rechercher</button>
+                    </form>
                 </div> 
             </div>
 
             <div class="grid-container">
-                {{ range . }}
+                {{ range .Artists }}
                     <div class="card">
                         <img src="{{ .Image }}" alt="Image de {{ .Name }}" class="card-image">
                         <h2>{{ .Name }}</h2>

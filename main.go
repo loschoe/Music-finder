@@ -87,22 +87,27 @@ func handleHome(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-
+func handleArtist(w http.ResponseWriter, r *http.Request) {
+	tmpl := template.Must(template.ParseFiles(filepath.Join("templates", "artist.html")))
+	tmpl.Execute(w, nil)
+}
 
 func handleAbout(w http.ResponseWriter, r *http.Request) {
 	tmpl := template.Must(template.ParseFiles(filepath.Join("templates", "AboutUS.html")))
 	tmpl.Execute(w, nil)
 }
 
-
+// =================== Fonction main ===================
 func main() {
 	fs := http.FileServer(http.Dir("static"))
 	http.Handle("/static/", http.StripPrefix("/static/", fs))
-
-	// Routes principales
+	
+	// Les pages !
 	http.HandleFunc("/", handleHome)
 	http.HandleFunc("/about", handleAbout)
+	http.HandleFunc("/artist", handleArtist)
 	
+	// Démarrage du serveur :
 	log.Println("✅ Serveur démarré sur http://localhost:8080")
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }

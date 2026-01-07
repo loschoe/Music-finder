@@ -121,13 +121,26 @@ body {
 }
 
 /* ================= MAIN CONTENT ================= */
+.info-wrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: 25px;
+  margin-bottom: 20px;
+}
+
+.info-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
 .div3 {
   max-width: 900px;
   margin: auto;
 }
 
 .div3 .title {
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: 600;
   margin-bottom: 20px;
   display: flex;
@@ -137,28 +150,28 @@ body {
 }
 
 .div3 .Name {
-  font-size: 1.75rem;
+  font-size: 2rem;
   text-decoration: underline;
   font-weight: 600;
   color: wheat;
-  margin: 10px 0;
+  margin: 0 0 10px 0;
 }
 
 .div3 .illustration {
-  max-width: 300px;
-  border-radius: 10px;
+  max-width: 400px;
+  border-radius: 15px;
   margin-bottom: 20px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 .div3 .text-descript {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   color: #2596be;
   margin: 5px 0;
 }
 
 .div3 .text-todo {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   color: red;
   margin: 5px 0;
 }
@@ -166,7 +179,7 @@ body {
 .text-descript .label {
   font-weight: bold;
   color: #ffffff;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
 }
 
 .div3 .Retour {
@@ -184,6 +197,116 @@ body {
 .div3 .Retour:hover {
   background-color: #1e40af;
   text-decoration: none;
+}
+
+.dates-list {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0;
+    background: var(--bg-card);
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    border: 1px solid rgba(255,255,255,0.08);
+}
+
+.dates-list li {
+    padding: 0.8rem 0;
+    font-size: 1.2rem;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.dates-list li:last-child {
+    border-bottom: none;
+}
+
+.dates-list strong {
+    color: var(--blue-accent);
+    font-weight: 700;
+    text-shadow: 0 0 6px rgba(91,192,235,0.4);
+}
+
+.dates-list li::before {
+    content: "•";
+    color: var(--blue-soft);
+    font-size: 1.4rem;
+    text-shadow: 0 0 6px rgba(58,134,255,0.5);
+}
+
+.info-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 25px;
+  margin-bottom: 20px;
+}
+
+.info-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex: 1;
+}
+
+.litle-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--blue-accent);
+  margin: 1.5rem 0 1rem 0;
+  text-shadow: 0 0 8px rgba(91, 192, 235, 0.4);
+  clear: both;
+  text-align: left;
+}
+
+.concerts {
+  background: #1C2541;
+  border-radius: 12px;
+  padding: 1.5rem 2rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(91, 192, 235, 0.15);
+  margin-top: 1rem;
+  display: block;
+  max-width: 750px;
+  width: auto;
+  word-break: keep-all;
+}
+
+.concerts p {
+  font-size: 1.1rem;
+  color: var(--text-main);
+  padding: 0.7rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: block;
+  line-height: 1.8;
+}
+
+.concerts p strong {
+  color: var(--blue-accent);
+  font-weight: 700;
+  text-shadow: 0 0 6px rgba(91, 192, 235, 0.35);
+  display: inline;
+}
+
+.concerts p::after {
+  content: "";
+  display: inline;
+  white-space: normal;
+}
+
+.concerts p:last-child {
+  border-bottom: none;
+}
+
+.concerts strong {
+  color: var(--blue-accent);
+  font-weight: 700;
+  text-shadow: 0 0 6px rgba(91, 192, 235, 0.35);
+  flex-shrink: 0;
+  min-width: 250px;
 }
 
 /* ================= FOOTER ================= */
@@ -253,5 +376,21 @@ footer a:hover {
   .side-menu ul {
     flex-direction: column;
     align-items: center;
+  }
+  .info-wrapper {
+    flex-direction: column;
+  }
+  
+  .concerts {
+    max-width: 100%;
+  }
+  
+  .concerts p {
+    flex-wrap: wrap;
+    white-space: normal;
+  }
+  
+  .concerts strong {
+    min-width: auto;
   }
 }

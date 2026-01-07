@@ -22,7 +22,8 @@
                 <ul>
                     <li><a href="/"><i class="fas fa-home"></i> <span>Accueil</span></a></li>
                     <li><a href="/about"><i class="fas fa-info-circle"></i> <span>À propos</span></a></li>
-                    <li><a href="#"><i class="fas fa-sun"></i> <span>Apparence</span></a></li>
+                    <a href="#" id="theme-toggle"><i id="theme-icon" class="fas fa-sun"></i><span>Apparence</span></a>
+                    <script src="/static/js/theme.js" defer></script>
                 </ul>
             </nav>
         </div>
@@ -50,6 +51,12 @@
                     </form>
                 </div> 
             </div>
+
+            {{ if .NoResult }}
+            <div class="no-result">
+                <p class="error"><i class="fa-solid fa-magnifying-glass"></i> Aucun artiste trouvé</p>
+            </div>
+            {{ end }}
 
             <div class="grid-container">
                 {{ range .Artists }}

@@ -7,17 +7,36 @@
 
 /* ================= VARIABLES ================= */
 :root {
+  --bg-gradient: linear-gradient(145deg, #0b132b, #020617);
   --bg-main: #0b132b;
   --bg-secondary: #1c2541;
-  --bg-card: #0e235e;
+  --bg-card: #ffffff;
   --bg-menu: #02050f;
   --bg-neon: #0364cf;
   --blue-accent: #5bc0eb;
   --blue-soft: #3a86ff;
   --text-main: #eaeaea;
   --text-muted: #bfc9d9;
+  --text-decript: #777;
   --shadow-soft: rgba(0, 0, 0, 0.4);
+  /* Variables pour la navigation */
+  --nav-width-compact: 70px;
+  --nav-width-expanded: 250px;
+}
 
+[data-theme="light"] {
+  --bg-gradient: linear-gradient(145deg, #f8fafc, #e2e8f0);
+  --bg-main: #69abec;
+  --bg-secondary: #908df5;
+  --bg-card: #D3D3D3;
+  --bg-menu: #5587eb;
+  --bg-neon: #0364cf;
+  --blue-accent: #0c044f;
+  --blue-soft: #3b82f6;
+  --text-main: #060c18;
+  --text-muted: #27282a;
+  --text-decript: #464748
+  --shadow-soft: rgba(15, 23, 42, 0.08);
   /* Variables pour la navigation */
   --nav-width-compact: 70px;
   --nav-width-expanded: 250px;
@@ -26,7 +45,7 @@
 /* ================= GLOBAL ================= */
 body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  background: linear-gradient(145deg, #0b132b, #020617);
+  background: var(--bg-gradient);
   color: var(--text-main);
   min-height: 100vh;
 }
@@ -71,6 +90,7 @@ body {
 .big-title {
   flex: 1;
   text-align: center;
+  margin-left: 6%;
   font-size: 2.8rem;
   letter-spacing: 2px;
   color: var(--blue-accent);
@@ -136,8 +156,8 @@ body {
 .search-box {
   display: flex;
   align-items: center;
-  background: rgba(26, 26, 26, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: var(--text-muted);            
+  /*border: 1px solid rgba(255, 255, 255, 0.2);*/
   border-radius: 50px;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0,0,0,0.4);
@@ -158,7 +178,7 @@ body {
 .search-icon svg {
   width: 22px;
   height: 22px;
-  fill: #5bc0eb;
+  fill: #3b82f6;
   filter: drop-shadow(0 0 4px rgba(91, 192, 235, 0.6));
 }
 
@@ -172,18 +192,19 @@ body {
   flex: 1;
   padding: 0.8rem 1.2rem;
   border: none;
-  color:#FFF;
+  border-radius: 15px;
+  color:#5E5E5E;
   font-size: 1rem;
   outline: none;
   transition: all 0.3s;
 }
 
 .search-input::placeholder {
-  color:#888;
+  color:#5E5E5E;
 }
 
 .search-input:focus {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.01);
 }
 
 .search-btn {
@@ -203,6 +224,11 @@ body {
   align-items: center;
 }
 
+.error {
+  text-align: center;
+  font-size: 2rem;
+  color: Red
+}
 /* ================ Artistes =============== */
 .grid-container {
   display: grid;
@@ -213,7 +239,7 @@ body {
 }
 
 .card {
-  background-color: white;
+  background-color: var(--bg-card);
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 15px;
@@ -243,11 +269,11 @@ body {
 .card h2 {
   font-size: 1.5rem;
   margin: 10px 0;
-  color: #2c3e50;
+  color: var(--blue-accent);
 }
 
 .description {
-  color: #777;
+  color: var(--text-decript);
   font-size: 1rem;
   margin-bottom: 15px;
 }

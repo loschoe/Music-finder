@@ -7,15 +7,20 @@
 
 /* ================= VARIABLES ================= */
 :root {
+  --bg-gradient: linear-gradient(145deg, #0b132b, #020617);
   --bg-main: #0b132b;
   --bg-secondary: #1c2541;
   --bg-card: #0e235e;
   --bg-menu: #02050f;
   --bg-neon: #0364cf;
+  --bg-section: #1c2541;
   --blue-accent: #5bc0eb;
   --blue-soft: #3a86ff;
+  --text-title: #F5DFB5;
   --text-main: #eaeaea;
   --text-muted: #bfc9d9;
+  --text-location: #5BC0EB;
+  --text-date: #EAEAEA;
   --shadow-soft: rgba(0, 0, 0, 0.4);
 
   /* Variables pour la navigation */
@@ -23,10 +28,32 @@
   --nav-width-expanded: 250px;
 }
 
+[data-theme="light"] {
+  --bg-gradient: linear-gradient(145deg, #f8fafc, #e2e8f0);
+  --bg-main: #69abec;
+  --bg-secondary: #908df5;
+  --bg-card: #D3D3D3;
+  --bg-menu: #5587eb;
+  --bg-neon: #0364cf;
+  --bg-section: #d3d3d3;
+  --blue-accent: #0c044f;
+  --blue-soft: #3b82f6;
+  --text-main: #060c18;
+  --text-muted: #27282a;
+  --text-decript: #464748;
+  --text-title: #303030;
+  --text-location: #0C044F;
+  --text-date: #060C18;
+  --shadow-soft: rgba(15, 23, 42, 0.08);
+  
+  /* Variables pour la navigation */
+  --nav-width-compact: 70px;
+  --nav-width-expanded: 250px;
+}
 /* ================= GLOBAL ================= */
 body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  background: linear-gradient(145deg, #0b132b, #020617);
+  background: var(--bg-gradient);
   color: var(--text-main);
   min-height: 100vh;
 }
@@ -112,10 +139,6 @@ body {
   transition: 0.3s ease;
 }
 
-.side-menu a:hover {
-  color: var(--blue-soft);
-}
-
 .side-menu span {
   display: none;
 }
@@ -153,7 +176,7 @@ body {
   font-size: 2rem;
   text-decoration: underline;
   font-weight: 600;
-  color: wheat;
+  color: var(--text-title);
   margin: 0 0 10px 0;
 }
 
@@ -178,7 +201,7 @@ body {
 
 .text-descript .label {
   font-weight: bold;
-  color: #ffffff;
+  color: var(--blue-accent);
   font-size: 1.5rem;
 }
 
@@ -263,10 +286,9 @@ body {
 }
 
 .concerts {
-  background: #1C2541;
+  background: var(--bg-section);
   border-radius: 12px;
   padding: 1.5rem 2rem;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
   border: 1px solid rgba(91, 192, 235, 0.15);
   margin-top: 1rem;
   display: block;
@@ -277,7 +299,7 @@ body {
 
 .concerts p {
   font-size: 1.1rem;
-  color: var(--text-main);
+  color: var(--text-date);
   padding: 0.7rem 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   display: block;
@@ -285,7 +307,7 @@ body {
 }
 
 .concerts p strong {
-  color: var(--blue-accent);
+  color: var(--text-location);
   font-weight: 700;
   text-shadow: 0 0 6px rgba(91, 192, 235, 0.35);
   display: inline;
@@ -392,5 +414,25 @@ footer a:hover {
   
   .concerts strong {
     min-width: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .parent {
+    grid-template-columns: 1fr;
+  }
+
+  .div2 {
+    grid-area: 2 / 1 / 3 / 2;
+  }
+
+  .side-menu ul {
+    flex-direction: row;
+    gap: 1.5rem;
+  }
+
+  .side-menu {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
   }
 }

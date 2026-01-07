@@ -15,6 +15,7 @@ type PageData struct {
 	Query    string
 	Searched bool
 	Artists  []models.Artist
+	NoResult bool
 }
 
 func filterArtists(artists []models.Artist, query string) []models.Artist {
@@ -45,6 +46,10 @@ func Home(w http.ResponseWriter, r *http.Request) {
 			data.Query = query
 			data.Searched = true
 			data.Artists = filterArtists(allArtists, query)
+
+			if len(data.Artists) == 0 {
+			data.NoResult = true
+		}
 		}
 	}
 

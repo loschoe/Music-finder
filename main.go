@@ -10,7 +10,8 @@ func main() {
 	fs := http.FileServer(http.Dir("static"))
 	http.Handle("/static/", http.StripPrefix("/static/", fs))
 
-	http.HandleFunc("/", handlers.Home)
+	http.HandleFunc("/", handlers.Start)
+	http.HandleFunc("/accueil", handlers.Home)
 	http.HandleFunc("/about", handlers.About)
 	http.HandleFunc("/artist/", handlers.Artist)
 

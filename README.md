@@ -104,7 +104,8 @@ Les contributions sont les bienvenues ! Pour contribuer :
 ## 👥 Auteurs
 
 - **Loschoe** - [GitHub](https://github.com/loschoe)
-- **Timcmr** - [[GitHub](https://github.com/timcmr)
+- **Timcmr** - [GitHub](https://github.com/timcmr)
 ---
 
 ⭐ **Si vous aimez ce projet, n'oubliez pas de lui donner une étoile !** ⭐
+

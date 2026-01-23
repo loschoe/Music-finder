@@ -8,6 +8,7 @@ Ce projet est développé dans le cadre d'un module à **STRASBOURG Ynov Campus*
 
 **Music Tracker** est une application web développée en Go qui permet de :
 - 🔍 Rechercher des artistes et groupes musicaux
+- 🔁 Comparer deux groupes pour voir leurs différences 
 - 📊 Visualiser leurs informations (membres, date de création, premier album)
 - 🎤 Consulter leurs dates et lieux de concerts
 - 🌍 Explorer une base de données complète d'artistes internationaux
@@ -24,7 +25,9 @@ Le projet utilise l'API [Groupie Trackers](https://groupietrackers.herokuapp.com
   - Date de création
   - Premier album sorti
   - Dates et lieux de concerts
-- ✅ **Design moderne** avec interface responsive et compacte 
+- ✅ **Page de comparaison** avec la possibilité de comparé deux artistes 
+- ✅ **Design moderne** avec interface responsive et compacte
+- ✅ **Thèmes** clair/sombre pour s'adapter à chacun 
 - ✅ **Architecture propre** avec séparation des fonctionnalités 
 
 ## 🛠️ Installation et exécution :
@@ -57,7 +60,9 @@ groupie-tracker/
 ├── handlers/          # Gestionnaire de routes HTTP
 │   ├── home.go       
 │   ├── artist.go
+|   ├── compare.go
 │   └── about.go
+
 │
 ├── models/            # Structure de données 
 │   ├── artist.go
@@ -72,6 +77,7 @@ groupie-tracker/
 ├── templates/        # Templates HTML
 │   ├── home.html
 │   ├── artist.html
+│   ├── compare.html
 │   └── aboutUS.html
 │
 ├── static/           # Fichiers statiques (styles & images)
@@ -91,6 +97,10 @@ groupie-tracker/
 ### Page Artiste
 <img width="1918" height="858" alt="image" src="https://github.com/user-attachments/assets/a09db26d-db63-4c47-bd4f-0655e3450af6" />
 
+## Page de comparaison
+<img width="862" height="612" alt="image" src="https://github.com/user-attachments/assets/550b1e82-14cd-42c7-a886-14e1e86b4cb5" />
+
+
 ## 🤝 Contribution
 
 Les contributions sont les bienvenues ! Pour contribuer :
@@ -108,4 +118,5 @@ Les contributions sont les bienvenues ! Pour contribuer :
 ---
 
 ⭐ **Si vous aimez ce projet, n'oubliez pas de lui donner une étoile !** ⭐
+
 

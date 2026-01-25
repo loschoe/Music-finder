@@ -8,7 +8,8 @@ Ce projet est développé dans le cadre d'un module à **STRASBOURG Ynov Campus*
 
 **Music Tracker** est une application web développée en Go qui permet de :
 - 🔍 Rechercher des artistes et groupes musicaux
-- 🔁 Comparer deux groupes pour voir leurs différences 
+- 🔁 Comparer deux groupes pour voir leurs différences
+- 💟 Ajouter un groupe en favoris pour le retrouver plus facilement 
 - 📊 Visualiser leurs informations (membres, date de création, premier album)
 - 🎤 Consulter leurs dates et lieux de concerts
 - 🌍 Explorer une base de données complète d'artistes internationaux
@@ -25,7 +26,8 @@ Le projet utilise l'API [Groupie Trackers](https://groupietrackers.herokuapp.com
   - Date de création
   - Premier album sorti
   - Dates et lieux de concerts
-- ✅ **Page de comparaison** avec la possibilité de comparé deux artistes 
+- ✅ **Page de comparaison** avec la possibilité de comparé deux artistes
+- ✅ **Page de favoris** qui repertorie tous les favoris de l'utilisateur 
 - ✅ **Design moderne** avec interface responsive et compacte
 - ✅ **Thèmes** clair/sombre pour s'adapter à chacun 
 - ✅ **Architecture propre** avec séparation des fonctionnalités 
@@ -61,8 +63,9 @@ groupie-tracker/
 │   ├── home.go       
 │   ├── artist.go
 |   ├── compare.go
+|   ├── favoris.go
 │   └── about.go
-
+|
 │
 ├── models/            # Structure de données 
 │   ├── artist.go
@@ -78,16 +81,20 @@ groupie-tracker/
 │   ├── home.html
 │   ├── artist.html
 │   ├── compare.html
+|   ├── favoris.html
 │   └── aboutUS.html
 │
-├── static/           # Fichiers statiques (styles & images)
+├── static/           # Fichiers statiques (styles & images & fonctionnalités)
      ├── css/
+     ├── js/
      └── img/
+
 ```
 
 ## 🛠️ Technologies Utilisées
 
 - **Backend** : Go (Golang)
+- **Fonctionnalités : JS
 - **Frontend** : HTML, CSS
 - **Templates** : `html/template`
 - **API** : [Groupie Trackers API](https://groupietrackers.herokuapp.com/api)
@@ -100,6 +107,8 @@ groupie-tracker/
 ## Page de comparaison
 <img width="862" height="612" alt="image" src="https://github.com/user-attachments/assets/550b1e82-14cd-42c7-a886-14e1e86b4cb5" />
 
+## Page de favoris 
+<img width="1027" height="702" alt="image" src="https://github.com/user-attachments/assets/ed714e5d-e7dc-4697-811f-9d79ec103fd6" />
 
 ## 🤝 Contribution
 
@@ -118,5 +127,6 @@ Les contributions sont les bienvenues ! Pour contribuer :
 ---
 
 ⭐ **Si vous aimez ce projet, n'oubliez pas de lui donner une étoile !** ⭐
+
 
 

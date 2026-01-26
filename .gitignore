@@ -1,5 +1,4 @@
 Documents/
 static/images/logo.jpg
 static/images/logo.png
-handlers/about.go
-templates/aboutUS.html
+

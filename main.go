@@ -1,3 +1,4 @@
+// Appeler les différents fichiers 
 package main
 
 import (
@@ -12,9 +13,9 @@ func main() {
 
 	http.HandleFunc("/", handlers.Start)
 	http.HandleFunc("/accueil", handlers.Home)
-	//http.HandleFunc("/search", handlers.Search)
-	http.HandleFunc("/about", handlers.About)
+	http.HandleFunc("/compare", handlers.Compare)
 	http.HandleFunc("/artist/", handlers.Artist)
+	http.HandleFunc("/favoris", handlers.Favorites)
 
 	log.Println("Démarrage du serveur...")
 	log.Println("✅ Serveur démarré sur http://localhost:8080")

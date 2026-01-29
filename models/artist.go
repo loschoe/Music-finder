@@ -1,3 +1,4 @@
+// Modèle artiste 
 package models
 
 import "strings"
@@ -10,6 +11,8 @@ type Artist struct {
 	FirstAlbum   string   `json:"firstAlbum"`
 	Image        string   `json:"image"`
 }
+
+var Artists []Artist
 
 func (a Artist) NbMembers() int {
 	return len(a.Members)

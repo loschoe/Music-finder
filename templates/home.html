@@ -7,11 +7,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>Accueil | Music Tracker</title>
 </head>
+
 <body>
-
 <div class="parent">
-
-    <!-- ================= HEADER ================= -->
     <div class="div1">
         <header class="header">
             <h1 class="big-title">Music Tracker 2025</h1>
@@ -19,13 +17,13 @@
         </header>
     </div>
 
-    <!-- ================= NAV ================= -->
     <div class="div2">
         <nav class="side-menu">
             <ul>
                 <li><a href="/accueil"><i class="fas fa-home"></i> <span>Accueil</span></a></li>
                 <li><a href="/accueil"><i class="fas fa-music"></i> <span>Artiste</span></a></li>
-                <li><a href="/about"><i class="fas fa-info-circle"></i> <span>À propos</span></a></li>
+                <li><a href="/compare"><i class="fa-solid fa-right-left"></i> <span>Comparaison</span></a></li>
+                <li><a href="/favoris"><i class="fa-solid fa-heart"></i> <span>Favoris</span></a></li>
                 <li><a href="#" id="theme-toggle"><i id="theme-icon" class="fas fa-sun"></i><span>Apparence</span></a></li>
             </ul>
             <script src="/static/js/theme.js" defer></script>
@@ -46,10 +44,9 @@
                         class="search-input"
                         type="text"
                         name="group"
-                        placeholder="Votre groupe..."
+                        placeholder="Votre groupe... (Nom / Date)"
                         value="{{.Query}}"
                     >
-                    <!-- Préserver les filtres existants lors de la recherche -->
                     {{if .AlphaOrder}}<input type="hidden" name="alpha" value="1">{{end}}
                     {{if .PeriodeSelect}}<input type="hidden" name="periode" value="{{.PeriodeSelect}}">{{end}}
                     {{if .MembresValue}}<input type="hidden" name="members" value="{{.MembresValue}}">{{end}}
@@ -62,7 +59,6 @@
                     <form method="GET" action="/accueil">
                         <div class="filtre">
                         
-                            <!-- Préserver la recherche lors du filtrage -->
                             {{if .Query}}<input type="hidden" name="group" value="{{.Query}}">{{end}}
                         
                             <input type="checkbox" id="alpha" name="alpha" value="1"
@@ -99,6 +95,9 @@
         <div class="grid-container">
             {{ range .Artists }}
             <div class="card">
+                <button class="favorite-btn" data-id="{{.ID}}" onclick="toggleFavorite({{.ID}})">
+                    <i class="fa-solid fa-heart"></i>
+                </button>
                 <img src="{{ .Image }}" alt="Image de {{ .Name }}" class="card-image">
                 <h2>{{ .Name }}</h2>
                 <p class="description">Création : {{ .CreationDate }}</p>
@@ -123,7 +122,8 @@
             </a>
         </footer>
     </div>
-
+   
 </div>
+<script src="/static/js/favoris.js"></script>
 </body>
 </html>
